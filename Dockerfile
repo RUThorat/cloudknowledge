@@ -1,11 +1,19 @@
-FROM redhat/ubi8
-MAINTAINER engineer.thorat@gmail.com
-RUN yum install -y httpd
-RUN yum install -y zip unzip
-ADD https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip /var/www/html/
-WORKDIR /var/www/html
-RUN unzip photogenic.zip
-RUN cp -rvf photogenic/* .
-RUN rm -rf photogenic photogenic.zip 
-CMD ["/usr/sbin/httpd", "-D",  "FOREGROUND"]
+#
+# The line below states we will base our new image on the Latest Official Ubuntu 
+FROM ubuntu:latest
+#
+# Identify the maintainer of an image
+LABEL maintainer="myname@somecompany.com"
+#
+# Update the image to the latest packages
+RUN apt-get update && apt-get upgrade -y
+#
+# Install NGINX to test.
+RUN apt-get install nginx -y
+#
+# Expose port 80
 EXPOSE 80
+#
+# Last is the actual command to start up NGINX within our Container
+CMD ["nginx", "-g", "daemon off;"]
+Dockerfile Commands
