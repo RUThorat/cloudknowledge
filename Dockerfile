@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM redhat/ubi8
 MAINTAINER engineer.thorat@gmail.com
 RUN yum install -y httpd
 RUN yum install -y zip unzip
