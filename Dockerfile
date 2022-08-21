@@ -1,4 +1,3 @@
-#
 # The line below states we will base our new image on the Latest Official Ubuntu 
 FROM ubuntu:latest
 #
@@ -16,4 +15,3 @@ EXPOSE 80
 #
 # Last is the actual command to start up NGINX within our Container
 CMD ["nginx", "-g", "daemon off;"]
-Dockerfile Commands
