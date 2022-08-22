@@ -1,17 +1,12 @@
-# The line below states we will base our new image on the Latest Official Ubuntu 
-FROM ubuntu:latest
-#
-# Identify the maintainer of an image
-LABEL maintainer="myname@somecompany.com"
-#
-# Update the image to the latest packages
-RUN apt-get update && apt-get upgrade -y
-#
-# Install NGINX to test.
-RUN apt-get install nginx -y
-#
-# Expose port 80
+FROM centos:latest
+MAINTAINER sanjay.dahiya332@gmail.com
+RUN yum install -y httpd \
+  zip \
+ unzip 
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip /var/www/html/
+WORKDIR /var/www/html
+RUN unzip photogenic.zip
+RUN cp -rvf photogenic/* .
+RUN rm -rf photogenic photogenic.zip 
+CMD ["/usr/sbin/httpd", "-D",  "FOREGROUND"]
 EXPOSE 80
-#
-# Last is the actual command to start up NGINX within our Container
-CMD ["nginx", "-g", "daemon off;"]
