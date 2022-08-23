@@ -9,7 +9,7 @@ ADD https://www.free-css.com/assets/files/free-css-templates/download/page254/ph
 RUN unzip photogenic.zip
 RUN cp -rvf ./photogenic/* .
 RUN rm -rf photogenic photogenic.zip 
-CMD apachectl -D FOREGROUND
+CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
 EXPOSE 80
 
  
