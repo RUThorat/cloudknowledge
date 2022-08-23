@@ -1,0 +1,26 @@
+#jenkin free style job configuration
+#add git repos in scm
+#check git hook in build trigger
+#add build step Send files or execute commands over SSH
+#select jenkin
+ #exec command #rsync -avh /var/lib/jenkins/workspace/cloudknowledge-job/Dockerfile root@10.0.1.70:/opt
+#select Ansible
+#exec command
+(cd /opt
+docker build  -t  $JOB_NAME:v1.$BUILD_ID  .
+
+docker tag $JOB_NAME:v1.$BUILD_ID  ruthorat/$JOB_NAME:v1.$BUILD_ID
+
+docker tag $JOB_NAME:v1.$BUILD_ID ruthorat/$JOB_NAME:latest
+
+docker push ruthorat/$JOB_NAME:v1.$BUILD_ID
+
+docker  push ruthorat/$JOB_NAME:latest
+
+docker rmi $JOB_NAME:v1.$BUILD_ID  ruthorat/$JOB_NAME:v1.$BUILD_ID     ruthorat/$JOB_NAME:latest
+)
+
+
+#Post-build Actions
+#select Ansible
+#  ansible-playbook    /root/sourcecode/docker.yml
