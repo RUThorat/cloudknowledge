@@ -1,3 +1,6 @@
+#add ansible nodes in ansible hosts file
+#jenkin , ansible, node should set password authentication yes , enable root login , could access each other by ssh withoud key 
+# install plugin in jenkin ie publish over ssh
 #jenkin free style job configuration
 #add git repos in scm
 #check git hook in build trigger
