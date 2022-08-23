@@ -1,0 +1,15 @@
+- hosts: dev
+  tasks:
+
+     - name: stop container
+       shell: docker stop cloudknowledge-container
+
+     - name: delete container
+       shell: docker rm -f cloudknowledge-container
+
+     - name: delete images
+       shell: docker rmi -f ruthorat/cloudknowledge-job:latest
+
+
+     - name: create container
+       shell: docker run -itd --name cloudknowledge-container -p 9000:80 ruthorat/cloudknowledge-job:latest
